@@ -1,0 +1,932 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ギコナビ Clone - HTML Content</title>
+    <style>
+        body {
+            font-family: 'MS UI Gothic', 'Meiryo', sans-serif;
+            font-size: 12px;
+            margin: 0; 
+            padding: 0; 
+            background-color: #c0c0c0; 
+            color: #000000;
+            overflow: hidden; 
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        .app-window {
+            width: 100vw; 
+            height: 100vh; 
+            border: none; 
+            background-color: #c0c0c0; 
+            display: flex;
+            flex-direction: column;
+            box-shadow: none; 
+            margin: 0; 
+        }
+        
+        .ui-icon {
+            width: 16px;
+            height: 16px;
+            vertical-align: middle;
+            object-fit: contain;
+            margin-right: 4px; /* Consistent spacing for icons in lists/tree */
+        }
+        .ui-icon-small {
+            width: 14px;
+            height: 14px;
+        }
+
+        .title-bar {
+            background: linear-gradient(to right, #000080, #1034A6); 
+            color: white;
+            padding: 2px 3px 2px 5px; 
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 22px; 
+            flex-shrink: 0; 
+            border-bottom: 1px solid #000050; 
+        }
+        .title-bar-icon-container {
+            margin-right: 5px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+        }
+        .title-bar-text {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex-grow: 1; 
+        }
+        .window-controls-container { 
+            display: flex;
+            align-items: center;
+        }
+        .title-bar-extra-icon-container {
+            display: flex;
+            align-items: center;
+            margin-right: 4px;
+        }
+        .title-bar-extra-icon-container .ui-icon {
+            margin-left: 2px;
+        }
+
+        .window-controls span {
+            margin-left: 1px;
+            border: 1px outset #c0c0c0;
+            padding: 1px 5px; 
+            background-color: #c0c0c0;
+            color: black;
+            font-size: 10px; 
+            font-weight: bold;
+            cursor: default;
+            line-height: 12px; 
+            min-width: 16px;
+            text-align: center;
+        }
+        .window-controls span:active { border-style: inset; }
+
+
+        .menu-bar {
+            background-color: #c0c0c0;
+            padding: 1px 4px; 
+            display: flex;
+            height: 20px; 
+            flex-shrink: 0;
+            border-bottom: 1px solid #808080; 
+            border-top: 1px solid white; 
+        }
+        .menu-bar span {
+            margin-right: 8px; 
+            cursor: default;
+            padding: 2px 4px; 
+        }
+        .menu-bar span:hover {
+            background-color: #000080;
+            color: white;
+        }
+
+        .toolbar {
+            background-color: #c0c0c0;
+            padding: 2px; 
+            display: flex;
+            align-items: center;
+            height: 26px; 
+            flex-shrink: 0;
+            border-bottom: 1px solid #808080;
+            border-top: 1px solid white;
+        }
+        .toolbar-button {
+            border: 1px solid #c0c0c0; 
+            background-color: #c0c0c0;
+            padding: 1px; 
+            margin: 0 1px; 
+            cursor: default;
+            width: 22px; 
+            height: 20px;
+            box-sizing: border-box;
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+        }
+        .toolbar-button:hover {
+             border-color: white #808080 #808080 white; 
+        }
+        .toolbar-button:active {
+            border-color: #808080 white white #808080; 
+        }
+        .toolbar-separator {
+            width: 1px;
+            height: 18px; 
+            background-color: #808080;
+            border-right: 1px solid white;
+            margin: 0 3px; 
+        }
+        
+        .address-bar-area { 
+            display: flex;
+            align-items: center;
+            background-color: #c0c0c0;
+            padding: 2px;
+            height: 24px;
+            flex-shrink: 0;
+            border-bottom: 1px solid #808080;
+            border-top: 1px solid white;
+        }
+        .address-bar-area .toolbar-button { margin: 0 1px; } 
+        .address-bar {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+        }
+        .address-bar label {
+            margin: 0 4px; 
+            padding-left: 2px;
+        }
+        .address-bar input[type="text"] {
+            flex-grow: 1;
+            border: 1px inset #808080; 
+            background-color: white;
+            font-size: 11px; 
+            padding: 2px 3px; 
+            margin-right: 3px;
+            height: 18px; 
+            line-height: 18px;
+        }
+        .address-bar button {
+            border: 2px outset #dfdfdf; 
+            background-color: #c0c0c0;
+            padding: 0px 6px; 
+            font-size: 11px; 
+            cursor: default;
+            height: 20px; 
+            line-height: 16px; 
+        }
+        .address-bar button:active {
+            border-style: inset;
+        }
+
+        .main-content-area {
+            display: flex;
+            flex-grow: 1; 
+            background-color: #c0c0c0;
+            overflow: hidden; 
+            border-top: 1px solid white;
+        }
+
+        .left-pane {
+            flex-basis: 250px; 
+            min-width: 180px; 
+            max-width: 60%; 
+            display: flex;
+            flex-direction: column;
+            background-color: #c0c0c0;
+            flex-shrink: 0;
+            overflow: hidden; 
+        }
+        .left-pane-actions {
+            padding: 2px;
+            background-color: #c0c0c0;
+            border-bottom: 1px solid #808080;
+            display: flex;
+            flex-shrink: 0;
+        }
+        .left-pane-actions button {
+            font-size: 11px;
+            padding: 1px 5px;
+            margin-right: 3px;
+            border: 2px outset #dfdfdf;
+            background-color: #c0c0c0;
+        }
+        .left-pane-actions button:active { border-style: inset; }
+
+        .left-pane-header { 
+            padding: 2px 3px; 
+            border: 1px inset #808080; 
+            background-color: #c0c0c0;
+            margin: 2px;
+            text-align: left; 
+            font-size: 11px;
+            height: 18px; 
+            line-height: 14px; 
+            flex-shrink: 0;
+            overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+        }
+        .channel-list-header { 
+            padding: 2px 5px;
+            font-weight: bold;
+            background-color: #c0c0c0;
+            border-top: 1px solid white;
+            border-bottom: 1px solid #808080;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 18px; 
+            flex-shrink: 0;
+            font-size: 11px;
+        }
+        .folder-tree { 
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            overflow-y: auto; 
+            flex-grow: 1;
+            background-color: white; 
+            border: 1px inset #808080; 
+            margin: 2px; 
+        }
+        .folder-tree li {
+            padding: 2px 5px; 
+            cursor: pointer; 
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 11px; 
+            display: flex; 
+            align-items: center;
+        }
+        .folder-tree li .ui-icon { margin-right: 2px; } 
+        .folder-tree ul { 
+            list-style: none;
+            padding-left: 15px; 
+            margin: 0;
+        }
+        .folder-tree li.selected-folder-for-content { 
+             font-weight: bold; 
+        }
+        .folder-tree li:hover {
+            background-color: #d4d0c8; 
+            color: black;
+        }
+
+
+        .vertical-splitter {
+            width: 4px; 
+            background-color: #c0c0c0;
+            border-left: 1px solid white;
+            border-right: 1px solid #808080;
+            cursor: col-resize;
+            flex-shrink: 0;
+        }
+
+        .right-pane {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: #c0c0c0;
+            overflow: hidden; 
+        }
+        
+        .thread-list-outer-container { 
+            padding: 1px; 
+            background-color: #c0c0c0;
+            display: flex; 
+            flex-direction: column; 
+            flex-basis: 220px; 
+            min-height: 80px; 
+            max-height: 70%; 
+            flex-shrink: 0; 
+            overflow: hidden; 
+        }
+
+        .file-list-table-container { 
+            flex-grow: 1;
+            overflow: auto; 
+            border: 1px inset #808080;
+            background-color: white;
+            margin: 1px;
+        }
+
+        .file-list-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+            table-layout: fixed; 
+        }
+        .file-list-table th, .file-list-table td {
+            border: 1px solid #d0d0d0;
+            padding: 2px 4px;
+            text-align: left;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .file-list-table th {
+            background-color: #e0e0e0;
+            position: sticky; 
+            top: 0;
+            z-index: 1;
+            border-bottom: 1px solid #808080;
+        }
+        .file-list-table th.col-filename { width: 40%; } 
+        .file-list-table th.col-size { width: 70px; text-align: right; }
+        .file-list-table th.col-date { width: 130px; }
+        .file-list-table th.col-acquired { width: 60px; text-align: right; }
+        .file-list-table th.col-new { width: 50px; text-align: right; }
+
+        .file-list-table td .ui-icon { margin-right: 3px; }
+        .file-list-table td.col-size, .file-list-table td.col-acquired, .file-list-table td.col-new {
+             text-align: right; 
+        }
+
+        .file-list-table tr:hover td { background-color: #f0f0f0; }
+        .file-list-table tr.selected-file td { background-color: #000080; color: white; }
+        .file-list-table tr.selected-file td .ui-icon { filter: brightness(0) invert(1); }
+
+
+        .horizontal-splitter {
+            height: 4px; 
+            background-color: #c0c0c0;
+            border-top: 1px solid white;
+            border-bottom: 1px solid #808080;
+            cursor: row-resize;
+            flex-shrink: 0;
+        }
+        
+        .content-view-header-bar {
+            display: flex;
+            align-items: center;
+            padding: 1px 4px;
+            background-color: #e0e0e0; 
+            border: 1px outset #dfdfdf;
+            height: 20px;
+            flex-shrink: 0;
+            font-size: 11px;
+            font-weight: bold;
+            margin: 1px;
+        }
+        .content-view-header-bar .ui-icon { margin: 0 2px; }
+
+
+        .content-toolbar {
+            display: flex;
+            align-items: center;
+            padding: 1px;
+            background-color: #c0c0c0;
+            height: 22px; 
+            flex-shrink: 0;
+            border-top: 1px solid white;
+            border-bottom: 1px solid #808080;
+        }
+        .content-toolbar .toolbar-button { height: 18px; }
+
+
+        .content-display-area {
+            flex-grow: 1; 
+            background-color: #c0c0c0; 
+            padding: 1px; 
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; 
+        }
+        .post-content { 
+            background-color: white;
+            border: 1px inset #808080; 
+            padding: 6px; 
+            flex-grow: 1; 
+            overflow-y: auto; 
+            font-size: 12px; 
+            line-height: 1.4;
+            white-space: pre-wrap; 
+            margin: 1px;
+            /* Allow default white-space for HTML rendering */
+            white-space: normal;
+        }
+        .post-content h1, .post-content h2, .post-content h3 { margin: 10px 0 5px 0; }
+        .post-content p { margin: 5px 0; }
+        .post-content ul, .post-content ol { margin: 5px 0 5px 20px; padding: 0 0 0 15px;}
+        .post-content blockquote { border-left: 2px solid #ccc; padding-left: 10px; margin-left: 5px; color: #555; font-style: italic;}
+
+
+        .tab-bar {
+            display: flex;
+            background-color: #c0c0c0;
+            height: 20px; 
+            flex-shrink: 0;
+            overflow-x: auto; 
+            border-top: 1px solid white; 
+            padding: 0 2px; 
+        }
+        .tab {
+            padding: 2px 6px; 
+            border: 1px outset #dfdfdf;
+            border-bottom: none; 
+            cursor: default;
+            background-color: #c0c0c0;
+            position: relative;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 10px; 
+            line-height: 14px; 
+            margin-right: 1px; 
+            max-width: 120px;
+            display: flex;
+            align-items: center;
+        }
+        .tab .ui-icon { margin-right: 3px; }
+        .tab.active-tab {
+            background-color: #c0c0c0; 
+            color: black;
+            position: relative;
+            z-index: 1; 
+            border-width: 2px; 
+            height: 18px; 
+        }
+        .tab:not(.active-tab) {
+             background-color: #b0b0b0; 
+             border-color: #c0c0c0 #a0a0a0 #a0a0a0 #c0c0c0; 
+             color: #404040;
+             margin-top: 1px;
+             height: 17px;
+        }
+
+        .status-bar {
+            display: flex;
+            background-color: #c0c0c0;
+            border-top: 1px solid white; 
+            height: 18px; 
+            align-items: center; 
+            flex-shrink: 0;
+            padding: 0 1px; 
+            font-size: 10px; 
+        }
+        .status-bar-segment {
+            padding: 0px 4px; 
+            border-right: 1px solid #808080; 
+            border-left: 1px solid white;   
+            height: 14px; 
+            line-height: 14px; 
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin: 1px 0; 
+        }
+        .status-bar-segment:first-child { border-left: none; flex-grow: 1; }
+        .status-bar-segment:last-child { border-right: none; }
+        .status-bar-grip {
+            width: 15px; height: 100%;
+            cursor: nwse-resize;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-window">
+        <div class="title-bar">
+            <div class="title-bar-icon-container"><img src="icons/app_icon.png" alt="App" class="ui-icon"></div>
+            <span class="title-bar-text">ギコナビ クローン - HTML Content</span>
+            <div class="window-controls-container">
+                <div class="title-bar-extra-icon-container">
+                    <img src="icons/help_question_mark-0.png" alt="Help" class="ui-icon ui-icon-small">
+                    <img src="icons/msg_warning-0.png" alt="Warning" class="ui-icon ui-icon-small">
+                </div>
+                <div class="window-controls">
+                    <span>_</span><span>□</span><span>X</span>
+                </div>
+            </div>
+        </div>
+        <div class="menu-bar">
+            <span>ファイル(F)</span><span>表示(V)</span><span>板(B)</span><span>スレ(R)</span><span>お気に入り(A)</span><span>ツール(T)</span><span>ヘルプ(H)</span>
+        </div>
+        <div class="toolbar">
+            <div class="toolbar-button" id="tb-up" title="Up"><img src="icons/arrow_up_blue.png" alt="Up" class="ui-icon"></div>
+            <div class="toolbar-button" id="tb-down" title="Down (NYI)"><img src="icons/arrow_down_blue.png" alt="Down" class="ui-icon"></div>
+            <div class="toolbar-button" id="tb-refresh" title="Refresh"><img src="icons/refresh_green.png" alt="Refresh" class="ui-icon"></div>
+            <div class="toolbar-button" id="tb-stop" title="Stop (NYI)"><img src="icons/media_player_stream_no.png" alt="Stop" class="ui-icon"></div>
+            <div class="toolbar-button" id="tb-home" title="Home (Root View)"><img src="icons/computer_explorer_cool-0.png" alt="Home" class="ui-icon"></div>
+            <div class="toolbar-separator"></div>
+            <div class="toolbar-button" title="Cut (NYI)"><img src="icons/cut_scissors.png" alt="Cut" class="ui-icon"></div>
+            <div class="toolbar-button" title="Copy (NYI)"><img src="icons/address_book_copy.png" alt="Copy" class="ui-icon"></div>
+            <div class="toolbar-button" title="Paste (NYI)"><img src="icons/paste_clipboard.png" alt="Paste" class="ui-icon"></div>
+            <div class="toolbar-separator"></div>
+            <div class="toolbar-button" title="Search Files (NYI)"><img src="icons/search_directory-0.png" alt="Search" class="ui-icon"></div>
+            <div class="toolbar-button" title="Print (NYI)"><img src="icons/fax_machine-1.png" alt="Print" class="ui-icon"></div>
+            <div class="toolbar-button" title="Help (NYI)"><img src="icons/help_question_mark-0.png" alt="Help" class="ui-icon"></div>
+            <div class="toolbar-separator"></div>
+            <div class="toolbar-button" title="Favorites (NYI)"><img src="icons/directory_favorites-3.png" alt="Favorites" class="ui-icon"></div>
+            <div class="toolbar-button" title="History (NYI)"><img src="icons/directory_closed_history-2.png" alt="History" class="ui-icon"></div>
+            <div class="toolbar-button" title="Mail (NYI)"><img src="icons/mailbox_world-2.png" alt="Mail" class="ui-icon"></div>
+        </div>
+        <div class="address-bar-area">
+            <div class="toolbar-button" title="Links (NYI)"><img src="icons/bar_graph-1.png" alt="Links" class="ui-icon"></div>
+            <label for="address-input">アドレス(D):</label>
+            <div class="address-bar">
+                <input type="text" id="address-input" value="giko:///" readonly>
+                <button>移動</button>
+            </div>
+            <div class="toolbar-button" title="Go (same as button)"><img src="icons/arrow_right_green_go.png" alt="Go" class="ui-icon"></div>
+        </div>
+
+        <div class="main-content-area" id="main-content-area">
+            <div class="left-pane" id="left-pane">
+                <div class="left-pane-actions">
+                    <button>追加</button>
+                    <button>整理</button>
+                </div>
+                <div class="channel-list-header" id="left-pane-tree-header">
+                    <span>Folder Tree</span>
+                </div>
+                <ul class="folder-tree" id="folder-tree-ul"></ul>
+            </div>
+            <div class="vertical-splitter" id="vertical-splitter"></div>
+            <div class="right-pane" id="right-pane">
+                <div class="thread-list-outer-container" id="thread-list-container">
+                    <div class="file-list-table-container">
+                        <table class="file-list-table" id="file-list-table">
+                            <thead>
+                                <tr>
+                                    <th class="col-filename">ファイル名</th>
+                                    <th class="col-size">サイズ</th>
+                                    <th class="col-date">作成日時</th>
+                                    <th class="col-acquired">取得</th>
+                                    <th class="col-new">新着</th>
+                                </tr>
+                            </thead>
+                            <tbody id="file-list-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="horizontal-splitter" id="horizontal-splitter"></div>
+                <div class="content-display-area" id="content-display">
+                    <div class="content-view-header-bar">
+                        <img src="icons/file_generic.png" alt="File" class="ui-icon" id="content-header-icon">
+                        <span id="file-content-title">File Content</span>
+                        <img src="icons/comment_bubble.png" alt="Comment" class="ui-icon" style="margin-left:auto;">
+                        <img src="icons/link_content_blue.png" alt="Link" class="ui-icon">
+                        <img src="icons/settings_gear.png" alt="Settings" class="ui-icon">
+                    </div>
+                    <div class="content-toolbar">
+                        <div class="toolbar-button" title="Reply (NYI)"><img src="icons/reply_arrow_blue.png" alt="Reply" class="ui-icon"></div>
+                        <div class="toolbar-button" title="Quote (NYI)"><img src="icons/quote_text_blue.png" alt="Quote" class="ui-icon"></div>
+                        <div class="toolbar-button" title="Find (NYI)"><img src="icons/find_text_magnify.png" alt="Find" class="ui-icon"></div>
+                        <div class="toolbar-button" title="Find Next (NYI)"><img src="icons/arrow_down_find.png" alt="Find Next" class="ui-icon"></div>
+                        <div class="toolbar-button" title="Find Prev (NYI)"><img src="icons/arrow_up_find.png" alt="Find Prev" class="ui-icon"></div>
+                        <div class="toolbar-button" title="Font (NYI)"><img src="icons/font_abc.png" alt="Font" class="ui-icon"></div>
+                    </div>
+                    <div class="post-content" id="file-content-display-div">
+                        Select a folder or file to view content.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-bar">
+            <div class="tab active-tab" id="main-active-tab"><img src="icons/home_tab.png" alt="Tab" class="ui-icon ui-icon-small"><span>Browse</span></div>
+            <div class="tab"><img src="icons/tab_generic_gray.png" alt="Tab" class="ui-icon ui-icon-small"><span>非公式*aa5*</span></div>
+        </div>
+        <div class="status-bar">
+            <div class="status-bar-segment" id="status-bar-main-text">Ready</div>
+            <div class="status-bar-segment" style="flex-grow: 0; flex-basis: 100px; text-align: center;" id="status-bar-item-count">Items: 0</div>
+            <div class="status-bar-segment" style="flex-grow: 0; flex-basis: 80px; text-align: center;">レス: 0</div>
+            <div class="status-bar-segment" style="flex-grow: 0; flex-basis: 60px; text-align: center;">UTF-8</div>
+            <div class="status-bar-segment" style="flex-grow: 0; flex-basis: 120px; text-align: center;" id="status-bar-time">1970/01/01 00:00</div>
+            <div class="status-bar-segment" style="flex-grow: 0; flex-basis: 40px; text-align: center;">一般</div>
+            <div class="status-bar-segment status-bar-grip"></div>
+        </div>
+    </div>
+
+<script>
+    const fileSystemData = {
+        type: "folder", 
+        isExpanded: true, 
+        children: {
+            "!Site Information!": {
+                type: "folder", isExpanded: false,
+                children: {
+                    "Welcome.txt": { 
+                        type: "file", 
+                        content: `
+                            <h1>Welcome.</h1>
+                            <p>This site was has been designed in order to replicate file explorer systems used by programs based on <b>Windows 98.</b> This site prioritizes an interactive visual experience above legibility, so please keep that in mind when using it.</p>
+                            <h2>User guide:</h2>
+                            <ul>
+                                <li>Click on folders on the left-hand side of the site to explore their contents.</li>
+                                <li>Folders containing text will have their contents displayed in the top-right panel. You can click on them to display them in the bottom panel.</li>
+                                <li>The panels on the site can be stretched and arranged for increased legibility.</li>
+                            </ul>
+                            <hr>
+                            <h2>Completed Pages</h2>
+                            <p>This website is a work in progress. The following pages are ready for viewing.:</p>
+                            <ol>
+                                <li>First page</li>
+                                <li>Second page</li>
+                            </ol>
+                            <blockquote>Most pages are currently lacking images. I'm working on implimenting this.</blockquote>
+                        `, 
+                        dateCreated: "2024/07/28 15:00" 
+                    }
+                }
+            },
+            "Journal": {
+                type: "folder", isExpanded: false,
+                children: {
+                    "2023": {type: "folder", isExpanded: false, children: { "01_January": {type: "folder", isExpanded: false, children: {"Jan_Entry_1.txt": {type: "file", content: "First entry of 2023.", dateCreated: "2023/01/01 12:00"}}}}},
+                    "2024": {type: "folder", isExpanded: false, children: { "05_May": {type: "folder", isExpanded: false, children: {"May_Notes.txt": {type: "file", content: "Notes from May 2024.", dateCreated: "2024/05/10 13:00"}}}}},
+                    "2025": {type: "folder", isExpanded: false, children: {
+                        "01_January": {type: "folder", isExpanded: false, children: {"Placeholder_Jan_2025.txt": {type: "file", content: "Future entry.", dateCreated: "2025/01/01 00:00"}}},
+                        "02_February": {type: "folder", isExpanded: false, children: {"Placeholder_Feb_2025.txt": {type: "file", content: "Future entry.", dateCreated: "2025/02/01 00:00"}}},
+                        "03_March": {type: "folder", isExpanded: false, children: {"Placeholder_Mar_2025.txt": {type: "file", content: "Future entry.", dateCreated: "2025/03/01 00:00"}}}
+                    }}
+                }
+            },
+            "Photography": {type: "folder", isExpanded: false, children: {
+                "Landscapes.txt": {type: "file", content: "Landscape photos.", dateCreated: "2023/07/11 10:00"},
+            }},
+            "Album Reviews": {type: "folder", isExpanded: false, children: {
+                "Hip-Hop_Rap": {type: "folder", isExpanded: false, children: {"Review_ArtistA.txt": {type: "file", content: "Review.", dateCreated: "2023/03/03 18:00"}}},
+                "Jazz": {type: "folder", isExpanded: false, children: {"Review_MilesD.txt": {type: "file", content: "Classic.", dateCreated: "2023/01/15 16:00"}}},
+            }},
+            "Architecture": {
+                type: "folder", isExpanded: false,
+                children: { 
+                    "Modern": {
+                        type: "folder", isExpanded: false,
+                        children: {
+                            "Brutalism": {type: "folder", isExpanded: false, children: { "Building1.txt": {type: "file", content: "Review.", dateCreated: "2023/03/03 18:00"}}},
+                            "Bauhaus": {type: "folder", isExpanded: false, children: { "Building1.txt": {type: "file", content: "Review.", dateCreated: "2023/03/03 18:00"}}},
+                            "Art_Deco": {type: "folder", isExpanded: false, children: { "Building1.txt": {type: "file", content: "Review.", dateCreated: "2023/03/03 18:00"}}},
+                            "Futurism": {type: "folder", isExpanded: false, children: { "Building1.txt": {type: "file", content: "Review.", dateCreated: "2023/03/03 18:00"}}}
+                        }
+                    }, 
+                    "Classical": { 
+                        type: "folder", isExpanded: false,
+                        children: {
+                            "Greek_&_Roman": {type: "folder", isExpanded: false, children: { "Building1.txt": {type: "file", content: "Review.", dateCreated: "2023/03/03 18:00"}}},
+                            "Byzantine": {type: "folder", isExpanded: false, children: { "Building1.txt": {type: "file", content: "Review.", dateCreated: "2023/03/03 18:00"}}},
+                            "Romanesque": {type: "folder", isExpanded: false, children: { "Building1.txt": {type: "file", content: "Review.", dateCreated: "2023/03/03 18:00"}}},
+                            "Gothic": {type: "folder", isExpanded: false, children: { "Building1.txt": {type: "file", content: "Review.", dateCreated: "2023/03/03 18:00"}}},
+                            "Neoclassical": {type: "folder", isExpanded: false, children: { "Building1.txt": {type: "file", content: "Review.", dateCreated: "2023/03/03 18:00"}}},
+                            "Baroque": {type: "folder", isExpanded: false, children: { "Building1.txt": {type: "file", content: "Review.", dateCreated: "2023/03/03 18:00"}}},
+                            "American_Victorian": {type: "folder", isExpanded: false, children: { "Building1.txt": {type: "file", content: "Review.", dateCreated: "2023/03/03 18:00"}}}
+                        }
+                    } 
+                } 
+            }, 
+            "Favorite Media": {
+                type: "folder", isExpanded: false, 
+                children: {
+                    "Movies.txt": {type: "file", content: "Favorite Movies.", dateCreated: "2023/11/01 17:00"}
+            }} 
+        }
+    };
+    function addCharCountsAndExpansion(node) {
+        if (node.type === 'folder') {
+            if (node.isExpanded === undefined) node.isExpanded = false; 
+            for (const child in node.children) { addCharCountsAndExpansion(node.children[child]); }
+        } else if (node.type === 'file') { node.charCount = node.content.length; }
+    }
+    addCharCountsAndExpansion(fileSystemData);
+
+    let currentPath = []; 
+    let folderTreeUl, fileListTbody, fileContentDiv, addressInput, activeTabSpan, statusBarMainText,
+        statusBarItemCount, fileContentTitle, leftPaneStaticHeader, leftPane, rightPane, verticalSplitter,
+        threadListContainer, contentDisplay, horizontalSplitter, mainContentArea, statusBarTime, contentHeaderIcon;
+
+    function getObjectByPath(pathArray, rootNode) {
+        let current = rootNode;
+        for (const segment of pathArray) {
+            if (!current || !current.children || !current.children[segment]) return null;
+            current = current.children[segment];
+        }
+        return current;
+    }
+    
+    function goUpLevel() { 
+        if (currentPath.length > 0) {
+            currentPath.pop();
+            const dirObjectForContent = getObjectByPath(currentPath, fileSystemData);
+            populateTopPane(dirObjectForContent); 
+            fileContentDiv.innerHTML = '(Select a file)'; // Use innerHTML
+            fileContentTitle.textContent = 'File Content';
+            contentHeaderIcon.src = "icons/file_generic.png";
+            updateUIChrome(); 
+            renderFolderTreeUL();
+        }
+    }
+
+    function goHome() { 
+        currentPath = []; 
+        renderFolderTreeUL(); 
+        populateTopPane(null); 
+        fileContentDiv.innerHTML = 'Select a folder or file to view content.'; // Use innerHTML
+        fileContentTitle.textContent = 'File Content';
+        contentHeaderIcon.src = "icons/file_generic.png";
+        updateUIChrome();
+    }
+    
+    function renderFolderTreeUL() {
+        folderTreeUl.innerHTML = '';
+        Object.keys(fileSystemData.children).sort().forEach(folderName => {
+            const folderNode = fileSystemData.children[folderName];
+            renderSingleFolderNode(folderTreeUl, folderNode, folderName, [folderName]);
+        });
+    }
+
+    function renderSingleFolderNode(parentElement, folderNode, folderName, pathArray) {
+        const li = document.createElement('li');
+        const isCurrentlySelectedForContent = JSON.stringify(pathArray) === JSON.stringify(currentPath);
+        
+        const iconSrc = folderNode.isExpanded ? "icons/directory_open_cool-0.png" : "icons/directory_closed_cool-0.png";
+        li.innerHTML = `<img src="${iconSrc}" alt="Folder" class="ui-icon"> ${folderName}`;
+        
+        if (isCurrentlySelectedForContent) {
+            li.classList.add('selected-folder-for-content');
+        }
+
+        li.onclick = (event) => {
+            event.stopPropagation(); 
+            folderNode.isExpanded = !folderNode.isExpanded;
+            currentPath = [...pathArray]; 
+            renderFolderTreeUL(); 
+            const dirObjectForContent = getObjectByPath(currentPath, fileSystemData);
+            populateTopPane(dirObjectForContent);
+            fileContentDiv.innerHTML = '(Select a file)'; // Use innerHTML
+            fileContentTitle.textContent = 'File Content';
+            contentHeaderIcon.src = "icons/file_generic.png";
+            updateUIChrome();
+        };
+        parentElement.appendChild(li);
+
+        if (folderNode.isExpanded && folderNode.children) {
+            const subUl = document.createElement('ul');
+            Object.keys(folderNode.children).sort().forEach(childName => {
+                const childNode = folderNode.children[childName];
+                if (childNode.type === 'folder') {
+                    renderSingleFolderNode(subUl, childNode, childName, [...pathArray, childName]);
+                }
+            });
+            if (subUl.hasChildNodes()) {
+                 parentElement.appendChild(subUl); 
+            }
+        }
+    }
+
+
+    function populateTopPane(directoryObject) {
+        fileListTbody.innerHTML = ''; 
+        let fileCount = 0;
+        const itemsToList = (directoryObject && directoryObject.type === 'folder') ? directoryObject.children : {};
+        
+        Object.keys(itemsToList).sort().forEach(name => {
+            const item = itemsToList[name];
+            if (item.type === 'file') {
+                fileCount++;
+                const tr = document.createElement('tr');
+                tr.style.cursor = 'pointer';
+                const nameTd = document.createElement('td');
+                nameTd.innerHTML = `<img src="icons/file_lines-0.png" alt="File" class="ui-icon"> ${name}`;
+                nameTd.title = name;
+                const sizeTd = document.createElement('td');
+                sizeTd.classList.add('col-size');
+                sizeTd.textContent = item.charCount !== undefined ? item.charCount : '-';
+                const dateTd = document.createElement('td');
+                dateTd.classList.add('col-date');
+                dateTd.textContent = item.dateCreated || 'N/A';
+                const acquiredTd = document.createElement('td');
+                acquiredTd.classList.add('col-acquired');
+                acquiredTd.textContent = item.charCount !== undefined ? item.charCount : '-'; 
+                const newTd = document.createElement('td');
+                newTd.classList.add('col-new');
+                newTd.textContent = Math.floor(Math.random() * (item.charCount/100 || 10)) +1;
+                tr.appendChild(nameTd); tr.appendChild(sizeTd); tr.appendChild(dateTd); tr.appendChild(acquiredTd); tr.appendChild(newTd);
+                tr.onclick = () => {
+                    const currentlySelected = fileListTbody.querySelector('.selected-file');
+                    if (currentlySelected) currentlySelected.classList.remove('selected-file');
+                    tr.classList.add('selected-file');
+                    displayFileContentInBottomPane(item, name);
+                };
+                fileListTbody.appendChild(tr);
+            }
+        });
+        statusBarItemCount.textContent = `Files: ${fileCount}`;
+    }
+
+    function displayFileContentInBottomPane(fileObject, fileName) {
+        if (fileObject && fileObject.type === 'file') {
+            // *** THE KEY CHANGE IS HERE ***
+            // Using .innerHTML to render HTML tags instead of displaying them as text.
+            // This is safe because we are defining all the content ourselves in this script.
+            fileContentDiv.innerHTML = fileObject.content;
+            
+            fileContentTitle.textContent = ` ${fileName}`;
+            contentHeaderIcon.src = "icons/file_generic_selected.png"; 
+        } else {
+            fileContentDiv.innerHTML = '(Error loading file content)'; // Use innerHTML
+            fileContentTitle.textContent = 'File Content';
+            contentHeaderIcon.src = "icons/file_generic.png";
+        }
+    }
+
+    function updateUIChrome() {
+        const displayPath = currentPath.length > 0 ? currentPath.join('/') : '';
+        const currentFolderName = currentPath.length > 0 ? currentPath[currentPath.length - 1] : "Browse";
+        addressInput.value = 'giko://' + displayPath;
+        const activeTabIcon = document.querySelector('#main-active-tab .ui-icon');
+        const activeTabText = document.querySelector('#main-active-tab span');
+        if (activeTabText) { activeTabText.textContent = currentFolderName; }
+        if (activeTabIcon) { activeTabIcon.src = currentPath.length > 0 ? "icons/folder_open_tab.png" : "icons/home_tab.png"; }
+        statusBarMainText.textContent = `Path: /${displayPath || ''}`;
+        const leftPaneHeader = document.getElementById('left-pane-static-header'); 
+        if(leftPaneHeader) { leftPaneHeader.textContent = `Current Content: /${displayPath || ''}`; }
+        else if(leftPaneStaticHeader) {leftPaneStaticHeader.textContent = `Current Content: /${displayPath || ''}`;}
+
+
+        const now = new Date();
+        if(statusBarTime) statusBarTime.textContent = `${now.getFullYear()}/${String(now.getMonth() + 1).padStart(2, '0')}/${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+    }
+    
+    let a_isDraggingVertical = false;
+    let b_isDraggingHorizontal = false;
+
+    function initResizers() {
+        verticalSplitter.addEventListener('mousedown', (e) => { e.preventDefault(); a_isDraggingVertical = true; document.body.style.cursor = 'col-resize'; });
+        horizontalSplitter.addEventListener('mousedown', (e) => { e.preventDefault(); b_isDraggingHorizontal = true; document.body.style.cursor = 'row-resize'; });
+        document.addEventListener('mousemove', (e) => {
+            if (a_isDraggingVertical) {
+                const mainRect = mainContentArea.getBoundingClientRect();
+                let newLeftPaneWidth = e.clientX - mainRect.left;
+                const minLeftWidth = parseFloat(getComputedStyle(leftPane).minWidth) || 100;
+                const maxLeftWidth = mainRect.width - (parseFloat(getComputedStyle(rightPane).minWidth) || 150) - verticalSplitter.offsetWidth;
+                newLeftPaneWidth = Math.max(minLeftWidth, Math.min(newLeftPaneWidth, maxLeftWidth));
+                leftPane.style.flexBasis = newLeftPaneWidth + 'px';
+            } else if (b_isDraggingHorizontal) {
+                const rightPaneRect = rightPane.getBoundingClientRect();
+                let newTopPaneHeight = e.clientY - rightPaneRect.top;
+                const minTopHeight = parseFloat(getComputedStyle(threadListContainer).minHeight) || 50;
+                const maxTopHeight = rightPaneRect.height - (parseFloat(getComputedStyle(contentDisplay).minHeight) || 100) - horizontalSplitter.offsetHeight;
+                newTopPaneHeight = Math.max(minTopHeight, Math.min(newTopPaneHeight, maxTopHeight));
+                threadListContainer.style.flexBasis = newTopPaneHeight + 'px';
+            }
+        });
+        document.addEventListener('mouseup', () => {
+            if (a_isDraggingVertical || b_isDraggingHorizontal) {
+                a_isDraggingVertical = false; b_isDraggingHorizontal = false; document.body.style.cursor = 'default';
+            }
+        });
+    }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        folderTreeUl = document.getElementById('folder-tree-ul'); 
+        fileListTbody = document.getElementById('file-list-tbody');
+        fileContentDiv = document.getElementById('file-content-display-div');
+        addressInput = document.getElementById('address-input');
+        statusBarMainText = document.getElementById('status-bar-main-text');
+        statusBarItemCount = document.getElementById('status-bar-item-count');
+        fileContentTitle = document.getElementById('file-content-title');
+        leftPaneStaticHeader = document.getElementById('left-pane-static-header'); 
+        statusBarTime = document.getElementById('status-bar-time');
+        leftPane = document.getElementById('left-pane');
+        rightPane = document.getElementById('right-pane');
+        verticalSplitter = document.getElementById('vertical-splitter');
+        threadListContainer = document.getElementById('thread-list-container');
+        contentDisplay = document.getElementById('content-display');
+        horizontalSplitter = document.getElementById('horizontal-splitter');
+        mainContentArea = document.getElementById('main-content-area');
+        contentHeaderIcon = document.getElementById('content-header-icon');
+
+        goHome(); 
+        initResizers();
+        
+        document.getElementById('tb-up').onclick = goUpLevel;
+        document.getElementById('tb-refresh').onclick = () => {
+            const currentDirObject = getObjectByPath(currentPath, fileSystemData);
+            renderFolderTreeUL(); 
+            populateTopPane(currentDirObject); 
+            updateUIChrome(); 
+            statusBarMainText.textContent = `Refreshed: /${currentPath.join('/') || ''}`;
+        };
+        document.getElementById('tb-home').onclick = goHome;
+    });
+</script>
+</body>
+</html>
