@@ -502,7 +502,6 @@
 <body>
     <div class="app-window">
         <div class="title-bar">
-            <div class="title-bar-icon-container"><img src="icons/app_icon.png" alt="App" class="ui-icon"></div>
             <span class="title-bar-text">ギコナビ クローン - HTML Content</span>
             <div class="window-controls-container">
                 <div class="title-bar-extra-icon-container">
@@ -518,32 +517,32 @@
             <span>ファイル(F)</span><span>表示(V)</span><span>板(B)</span><span>スレ(R)</span><span>お気に入り(A)</span><span>ツール(T)</span><span>ヘルプ(H)</span>
         </div>
         <div class="toolbar">
-            <div class="toolbar-button" id="tb-up" title="Up"><img src="icons/arrow_up_blue.png" alt="Up" class="ui-icon"></div>
-            <div class="toolbar-button" id="tb-down" title="Down (NYI)"><img src="icons/arrow_down_blue.png" alt="Down" class="ui-icon"></div>
-            <div class="toolbar-button" id="tb-refresh" title="Refresh"><img src="icons/refresh_green.png" alt="Refresh" class="ui-icon"></div>
-            <div class="toolbar-button" id="tb-stop" title="Stop (NYI)"><img src="icons/media_player_stream_no.png" alt="Stop" class="ui-icon"></div>
+            <div class="toolbar-button" id="tb-up" title="Up"><span>↑</span></div>
+            <div class="toolbar-button" id="tb-down" title="Down"><span>↓</span></div>
+            <div class="toolbar-button" id="tb-refresh" title="Refresh"><span>↻</span></div>
+            <div class="toolbar-button" id="tb-stop" title="Stop"><img src="icons/no-0.png" alt="Stop" class="ui-icon"></div>
             <div class="toolbar-button" id="tb-home" title="Home (Root View)"><img src="icons/computer_explorer_cool-0.png" alt="Home" class="ui-icon"></div>
             <div class="toolbar-separator"></div>
-            <div class="toolbar-button" title="Cut (NYI)"><img src="icons/cut_scissors.png" alt="Cut" class="ui-icon"></div>
-            <div class="toolbar-button" title="Copy (NYI)"><img src="icons/address_book_copy.png" alt="Copy" class="ui-icon"></div>
-            <div class="toolbar-button" title="Paste (NYI)"><img src="icons/paste_clipboard.png" alt="Paste" class="ui-icon"></div>
+            <div class="toolbar-button" title="Cut"><b>X</b></div>
+            <div class="toolbar-button" title="Copy"><img src="icons/address_book_copy.png" alt="Copy" class="ui-icon"></div>
+            <div class="toolbar-button" title="Paste"><img src="icons/web_file_set-4.png" alt="Paste" class="ui-icon"></div>
             <div class="toolbar-separator"></div>
-            <div class="toolbar-button" title="Search Files (NYI)"><img src="icons/search_directory-0.png" alt="Search" class="ui-icon"></div>
-            <div class="toolbar-button" title="Print (NYI)"><img src="icons/fax_machine-1.png" alt="Print" class="ui-icon"></div>
-            <div class="toolbar-button" title="Help (NYI)"><img src="icons/help_question_mark-0.png" alt="Help" class="ui-icon"></div>
+            <div class="toolbar-button" title="Search Files"><img src="icons/search_directory-0.png" alt="Search" class="ui-icon"></div>
+            <div class="toolbar-button" title="Print"><img src="icons/fax_machine-1.png" alt="Print" class="ui-icon"></div>
+            <div class="toolbar-button" title="Help"><img src="icons/help_question_mark-0.png" alt="Help" class="ui-icon"></div>
             <div class="toolbar-separator"></div>
-            <div class="toolbar-button" title="Favorites (NYI)"><img src="icons/directory_favorites-3.png" alt="Favorites" class="ui-icon"></div>
-            <div class="toolbar-button" title="History (NYI)"><img src="icons/directory_closed_history-2.png" alt="History" class="ui-icon"></div>
-            <div class="toolbar-button" title="Mail (NYI)"><img src="icons/mailbox_world-2.png" alt="Mail" class="ui-icon"></div>
+            <div class="toolbar-button" title="Favorites"><img src="icons/directory_favorites-3.png" alt="Favorites" class="ui-icon"></div>
+            <div class="toolbar-button" title="History"><img src="icons/directory_closed_history-2.png" alt="History" class="ui-icon"></div>
+            <div class="toolbar-button" title="Mail"><img src="icons/mailbox_world-2.png" alt="Mail" class="ui-icon"></div>
         </div>
         <div class="address-bar-area">
-            <div class="toolbar-button" title="Links (NYI)"><img src="icons/bar_graph-1.png" alt="Links" class="ui-icon"></div>
+            <div class="toolbar-button" title="Links"><img src="icons/bar_graph-1.png" alt="Links" class="ui-icon"></div>
             <label for="address-input">アドレス(D):</label>
             <div class="address-bar">
                 <input type="text" id="address-input" value="giko:///" readonly>
                 <button>移動</button>
             </div>
-            <div class="toolbar-button" title="Go (same as button)"><img src="icons/arrow_right_green_go.png" alt="Go" class="ui-icon"></div>
+            <div class="toolbar-button" title="Go (same as button)"><img src="icons/magnifying_glass_4-1.png" alt="Go" class="ui-icon"></div>
         </div>
 
         <div class="main-content-area" id="main-content-area">
@@ -578,19 +577,15 @@
                 <div class="horizontal-splitter" id="horizontal-splitter"></div>
                 <div class="content-display-area" id="content-display">
                     <div class="content-view-header-bar">
-                        <img src="icons/file_generic.png" alt="File" class="ui-icon" id="content-header-icon">
                         <span id="file-content-title">File Content</span>
-                        <img src="icons/comment_bubble.png" alt="Comment" class="ui-icon" style="margin-left:auto;">
-                        <img src="icons/link_content_blue.png" alt="Link" class="ui-icon">
-                        <img src="icons/settings_gear.png" alt="Settings" class="ui-icon">
                     </div>
                     <div class="content-toolbar">
-                        <div class="toolbar-button" title="Reply (NYI)"><img src="icons/reply_arrow_blue.png" alt="Reply" class="ui-icon"></div>
-                        <div class="toolbar-button" title="Quote (NYI)"><img src="icons/quote_text_blue.png" alt="Quote" class="ui-icon"></div>
-                        <div class="toolbar-button" title="Find (NYI)"><img src="icons/find_text_magnify.png" alt="Find" class="ui-icon"></div>
-                        <div class="toolbar-button" title="Find Next (NYI)"><img src="icons/arrow_down_find.png" alt="Find Next" class="ui-icon"></div>
-                        <div class="toolbar-button" title="Find Prev (NYI)"><img src="icons/arrow_up_find.png" alt="Find Prev" class="ui-icon"></div>
-                        <div class="toolbar-button" title="Font (NYI)"><img src="icons/font_abc.png" alt="Font" class="ui-icon"></div>
+                        <div class="toolbar-button" title="Edit"><img src="icons/write_wordpad-1.png" alt="Reply" class="ui-icon"></div>
+                        <div class="toolbar-button" title="Quote"><img src="icons/msg_information-2.png" alt="Quote" class="ui-icon"></div>
+                        <div class="toolbar-button" title="Find"><img src="icons/search_file_2-3.png" alt="Find" class="ui-icon"></div>
+                        <div class="toolbar-button" title="Find Next"><span>↑</span></div>
+                        <div class="toolbar-button" title="Find Prev"><span>↓</span></div>
+                        <div class="toolbar-button" title="Font"><img src="icons/font_tt-0.png" alt="Font" class="ui-icon"></div>
                     </div>
                     <div class="post-content" id="file-content-display-div">
                         Select a folder or file to view content.
@@ -600,8 +595,8 @@
         </div>
 
         <div class="tab-bar">
-            <div class="tab active-tab" id="main-active-tab"><img src="icons/home_tab.png" alt="Tab" class="ui-icon ui-icon-small"><span>Browse</span></div>
-            <div class="tab"><img src="icons/tab_generic_gray.png" alt="Tab" class="ui-icon ui-icon-small"><span>非公式*aa5*</span></div>
+            <div class="tab active-tab" id="main-active-tab"><img src="icons/directory_open_cool-0.png" alt="Tab" class="ui-icon ui-icon-small"><span>Browse</span></div>
+            <div class="tab"><img src="icons/directory_closed_cool-0.png" alt="Tab" class="ui-icon ui-icon-small"><span>非公式*aa5*</span></div>
         </div>
         <div class="status-bar">
             <div class="status-bar-segment" id="status-bar-main-text">Ready</div>
@@ -626,7 +621,7 @@
                         type: "file", 
                         content: `
                             <h1>Welcome.</h1>
-                            <p>This site was has been designed in order to replicate file explorer systems used by programs based on <b>Windows 98.</b> This site prioritizes an interactive visual experience above legibility, so please keep that in mind when using it.</p>
+                            <p>This site was has been designed in order to replicate file explorer systems used by programs based on <b>Windows 98.</b> This site prioritizes an interactive visual experience above legibility, so please keep that in mind when using it. This site is intended to be used as a personal blog, and thus is tailored towards personal expression rather than a streamlined design.</p>
                             <h2>User guide:</h2>
                             <ul>
                                 <li>Click on folders on the left-hand side of the site to explore their contents.</li>
@@ -639,8 +634,11 @@
                             <ol>
                                 <li>Album_Reviews>Jazz>MaidenVoyage_HerbieHancock.txt</li>
                                 <li>Album_Reviews>Electronica>Tomorrow2096_沙漠里的沙子晚上很温暖.txt</li>
+                                <li>Album_Reviews>Electronica>CultMember_Ethernet.txt</li>
+                                <li>Album_Reviews>Electronica>telepathテレパシー能力者_星間性交.txt.txt</li>
+                                <li>Album_Reviews>Electronica>輕描淡寫_小圈子.txt</li>
                             </ol>
-                            <blockquote>Most pages are currently lacking images. I'm working on implimenting this.</blockquote>
+                            <blockquote>There are plenty of pages which contain little to no content. I will eventually add this content, but that is for another time.</blockquote>
                         `, 
                         dateCreated: "2024/07/28 15:00" 
                     }
@@ -650,10 +648,40 @@
                 "Landscapes.txt": {type: "file", content: "Landscape photos.", dateCreated: "2023/07/11 10:00"},
             }},
             "Album Reviews": {type: "folder", isExpanded: false, children: {
-                "Hip-Hop_Rap": {type: "folder", isExpanded: false, children: {"Review_ArtistA.txt": {type: "file", content: "Review.", dateCreated: "2023/03/03 18:00"}}},
-              "Electronica": {type: "folder", isExpanded: false, children: {"Tomorrow2096_沙漠里的沙子晚上很温暖.txt": {type: "file", content: `
-              
-	<h1>Tomorrow, 2096 (2019) - 沙漠里的沙子晚上很温暖</h1>
+              "Jazz": {
+                type: "folder", 
+                isExpanded: false, 
+                children: {
+                    "MaidenVoyage_HerbieHancock.txt": {
+                        type: "file", 
+                        content: `
+                            <div style="display: flex; gap: 20px; align-items: flex-start;">
+                                <div style="flex: 1;">
+                                    <h1>Maiden Voyage (1965) - Herbie Hancock</h1>
+                                    <p><em>Maiden Voyage</em> is Herbie Hancock’s most beloved album, and for good reason. Despite only consisting of five songs, the album manages to convey a highly dynamic story throughout its forty-two minute runtime.</p>
+                                    <p>While Herbie Hancock’s signature piano skills are put on full display in this album, it is the brass section, who, in my opinion, makes this album the masterpiece that it is. Freddie Hubbard and George Coleman on the trumpet and saxophone, respectively utilized the medium of modal jazz to its fullest by providing solos that benefited the composition of the tracks greatly.</p>
+                                    <p>While Herbie’s light piano sound is obviously at the forefront of the album, each bandmember’s restraint from performing in-your-face solos gives the album an incredibly open and dynamic sound which showcases some of the best that modal jazz has to offer.</p>
+                                </div>
+                                <div style="flex-shrink: 0; padding-top: 10px;">
+                                    <img src="https://e.snmc.io/i/fullres/w/9adcb23713ed6e936c76d8fad1f14698/1887302" alt="maidenvoyage" style="width: 350px; border: 1px solid #808080; box-shadow: 2px 2px 0px #fff;">
+                                </div>
+                            </div>
+                        `, 
+                        dateCreated: "2023/01/15 16:00"
+                    }
+                }
+            },
+                "Hip-Hop_Rap": {type: "folder", isExpanded: false, children: {"Review_ArtistA.txt": {type: "file", content: "Review.", dateCreated: "2025/18/12 18:00"}}},
+              "Electronica": {
+                type: "folder", 
+                isExpanded: false, 
+                children: {
+                    "Tomorrow2096_沙漠里的沙子晚上很温暖.txt": {
+                        type: "file", 
+                        content: `
+                                                    <div style="display: flex; gap: 20px; align-items: flex-start;">
+                                <div style="flex: 1;">
+                            <h1>Tomorrow, 2096 (2019) - 沙漠里的沙子晚上很温暖</h1>
   <h2>Decent Album, But Less Than the Sum of Its Parts</h2>
 
   <p>Coming into this album, you would expect more of DSFWAN's signature, droning reverb, slowing you down. However, in this album, even though the instruments on their own are great and unique, I can't help but feel very separated from the soundscape I am supposed to be immersed in.</p>
@@ -661,23 +689,75 @@
   <p>And this is really what keeps me from loving this album—the fact that it's not immersive. Vaporwave and Dreampunk both pride themselves on being an immersive experience, but when you play this album in its entirety, I can never get lost in it. There are too many different things being tried, with too little coherency between the songs besides, "It's dreamy synth city".</p>
 
   <p><em>E™</em> and <em>Rare Earth Metals</em> are amazing songs, however. I just wish their motifs were more present throughout the rest of the album.</p>
-  <img src="https://e.snmc.io/i/600/w/b6dfd3f7fe293bcdba4a90aebeddf27f/7730313/%E6%B2%99%E6%BC%A0%E9%87%8C%E7%9A%84%E6%B2%99%E5%AD%90%E6%99%9A%E4%B8%8A%E5%BE%88%E6%B8%A9%E6%9A%96-tomorrow-2096-Cover-Art.jpg" alt="tmr2096">
+  <br>
+  </div>
+                        <div style="flex-shrink: 0; padding-top: 10px;">
+<iframe style="border: 0; width: 350px; height: 753px;" src="https://bandcamp.com/EmbeddedPlayer/album=47713121/size=large/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless><a href="https://desertsand.bandcamp.com/album/floor-122">FLOOR—122 by 沙漠里的沙子晚上很温暖</a></iframe>                       </div>
+                    </div> 
   `, 
-                                                                                                            dateCreated: "2023/03/03 18:00"}}},
-                "Jazz": {type: "folder", isExpanded: false, children: {"MaidenVoyage_HerbieHancock.txt": {type: "file", content: `
-  
-  <h1>Maiden Voyage (1965) - Herbie Hancock</h1>
-
-  <p><em>Maiden Voyage</em> is Herbie Hancock’s most beloved album, and for good reason. Despite only consisting of five songs, the album manages to convey a highly dynamic story throughout its forty-two minute runtime.</p>
-
-  <p>While Herbie Hancock’s signature piano skills are put on full display in this album, it is the brass section, who, in my opinion, makes this album the masterpiece that it is. Freddie Hubbard and George Coleman on the trumpet and saxophone, respectively utilized the medium of modal jazz to its fullest by providing solos that benefited the composition of the tracks greatly.</p>
-
-  <p>While Herbie’s light piano sound is obviously at the forefront of the album, each bandmember’s restraint from performing in-your-face solos gives the album an incredibly open and dynamic sound which showcases some of the best that modal jazz has to offer.</p>
-  
-  <img src="https://e.snmc.io/i/fullres/w/9adcb23713ed6e936c76d8fad1f14698/1887302" alt="maidenvoyage">
-  
- `, 
-                                                                                             dateCreated: "2023/01/15 16:00"}}},
+                        dateCreated: "2023/03/03 18:00"
+                    },
+                  "CultMember_Ethernet.txt": {
+                type: "file",
+                content: `
+                    <div style="display: flex; gap: 20px; align-items: flex-start;">
+                        <div style="flex: 1;">
+                            <h1>Ethernet by Cult Member</h1>
+                <p>
+                    <p>Definetly my favorite techno album of all time. It's a great blend of ghetto house and synthwave, with great production. Every track is full of great techno beats with vapor-like production punctuated by synth riffs you would find on a synthwave release. The composition of each song is incredible, with call-and-response chatter between each of the instruments. The result is a nostalgic tribute to the 2000s/90s rave scene set somewhere in a 480p true crime documentury.</p> 
+                    <p>Everything about this album reeks of Y2K aesthetics, from the nuclear green album cover to the Eurobeat-ness of tracks like Acid Jam Mutek, and the references to old technology in the interludes between tracks and the scanlines of the cover itself. it's a throwback to the excitement (and grittiness) of the era, lending the album to be dancable but with a message to it, aswell. </p>
+                    <p>I love every song on this album. They are all perfect, and there's nothing I would change about any of them. Cult Member had a vision and he achieved it perfectly. His maximalist approach to the genre flips all of the conventions of techno on it's head, creating a claustrophobic and moody atmosphere in the absence of a crowded club.</p>
+                    <p>Favorite track(s): 1: 2080, 4. Steroid Dealer, 5: Faygo, 11: Dream Member.</p>
+                    <p><b>Final Score: 8.5/10</b></p>
+                        </div>
+                        <div style="flex-shrink: 0; padding-top: 10px;">
+<iframe style="border: 0; width: 350px; height: 786px;" src="https://bandcamp.com/EmbeddedPlayer/album=219324961/size=large/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless><a href="https://purelifetapes.bandcamp.com/album/ethernet">Ethernet by Cult Member</a></iframe>                        </div>
+                    </div>
+                `,
+                dateCreated: "2024/01/01 00:00"
+            },
+                    "telepathテレパシー能力者_星間性交.txt": {
+                        type: "file",
+                        content: `
+                        <div style="display: flex; gap: 20px; align-items: flex-start;">
+                                <div style="flex: 1;">
+                             <h1>星間性交 by t e l e p a t h テレパシー能力者</h1>
+                <p>
+                    <p>This album is truly one of the most unique sounding things I have ever heard. It is without a doubt the best album Telepath has ever produced. It breaks every rule as to what music should be. Most songs include stange instruments with strange vocals and have extremely unorthodox song structures. This album was groundbreaking, and despite being one of the first Slushwave albums back in 2015, it still holds up today.</p> 
+                    <p>The album is both psychedelic and nocturnal at the same time. The cover perfectly enapsulates the mood. Many of the tracks are quite ghostly, with laidback "phazed" drum patterns dancing back and forth into the background. This sound can best be heard on the 5th track (選ばれし者). The production Telepath used on otherwise unremarkable samples was both minimalistic and perfectly executed. He has been known to produce some of his music directly onto cassette decks, and use analog production techniques. Regardless of wether or not this applies to this album, his ability to find and manipulate samples to create this atmosphere is remarkable.</p>
+                    <p>My only major complaints with this album are tracks 4 (強迫観念) and 7 (強い願望). I think they break the calming vibe that the preceeding tracks set, and make the succeeding songs sound more uneasy than the artist intended them to be.</p>
+                    <p>Favorite tracks: 2. 愛の瞬間, 3. 深夜の愛, 6. 星間性交, 9. 同感です, and 10. 夜に愛.</p>
+                    <p><b>Final Score: 9/10.</b> Never gets old.</p>
+                    <p>Entry added 12/8/24</p>
+ </div>
+                                <div style="flex-shrink: 0; padding-top: 10px;">
+                    <iframe style="border: 0; width: 350px; height: 853px;" src="https://bandcamp.com/EmbeddedPlayer/album=3227274125/size=large/bgcol=ffffff/linkcol=0687f5/package=3140580781/transparent=true/" seamless><a href="https://geometriclullaby.bandcamp.com/album/--38">星​間​性​交 by t e l e p a t h テレパシー能力者</a></iframe>
+                    </div>
+                            </div>
+                        `,
+                        dateCreated: "2024/01/10 12:45"
+                    },
+                    "輕描淡寫_小圈子.txt": {
+                        type: "file",
+                        content: `
+                            <div style="display: flex; gap: 20px; align-items: flex-start;">
+                                <div style="flex: 1;">
+                                    <h1>小圈子 (Small Circle) by 輕描淡寫</h1>
+                                    <p>I always like to listen to this album with the windows open. I think the best way I can describe the album is being like the smell of rain. The gentle buildup of the synths and it's harmony with the piano is incredible. I love how the piano is played twice with different production on it. It allows the instruments to harmonise with themselves and leads to instrumentation to be both minimalistic and impactful at the same time.</p> 
+                                    <p>The album cover is also somewhere in my top 10. I slightly prefer the version of it released on Vill4in records, but you can see the original design on the cassette release. Not only is the eye stunning, but the pressence of the black background blurs the distinction between the woman, and her environment, thus making the two representative of one-another. The inclusion of snow behind her not only gives you a rough idea of her outline, but it also provides color composition.</p>
+                                    <p>There's nothing I don't like about this album; it's short and sweet, and uses up all of it's tricks without letting them get old. It's really emotionally evocative and the usage of background noise is clever and tastefull.</p>
+                                    <p>Favorite track: 1. 我昨晚梦见你了.</p>
+                                    <p><b>Final Score: 7.5/10</b></p>
+                                </div>
+                                <div style="flex-shrink: 0; padding-top: 10px;">
+                                    <iframe style="border: 0; width: 350px; height: 688px;" src="https://bandcamp.com/EmbeddedPlayer/album=1329596844/size=large/bgcol=ffffff/linkcol=0687f5/package=2128053824/transparent=true/" seamless><a href="https://vill4in.bandcamp.com/album/--5">小圈子 by 輕描淡寫</a></iframe>
+                                </div>
+                            </div>
+                        `,
+                        dateCreated: "2024/05/20 14:20"
+                    }
+                }
+              },
             }},
             "Architecture": {
                 type: "folder", isExpanded: false,
@@ -686,7 +766,8 @@
                         type: "folder", isExpanded: false,
                         children: {
                             "Brutalism": {type: "folder", isExpanded: false, children: { "Building1.txt": {type: "file", content: "Review.", dateCreated: "2023/03/03 18:00"}}},
-                            "Bauhaus": {type: "folder", isExpanded: false, children: { "Building1.txt": {type: "file", content: "Review.", dateCreated: "2023/03/03 18:00"}}},
+                            "Bauhaus": {type: "folder", isExpanded: false, children: { "Building1.txt": {type: "file", content: "Review.", dateCreated: "2023/03/03 18:00"}}       
+                                       },
                             "Art_Deco": {type: "folder", isExpanded: false, children: { "Building1.txt": {type: "file", content: "Review.", dateCreated: "2023/03/03 18:00"}}},
                             "Futurism": {type: "folder", isExpanded: false, children: { "Building1.txt": {type: "file", content: "Review.", dateCreated: "2023/03/03 18:00"}}}
                         }
@@ -867,7 +948,7 @@
         const activeTabIcon = document.querySelector('#main-active-tab .ui-icon');
         const activeTabText = document.querySelector('#main-active-tab span');
         if (activeTabText) { activeTabText.textContent = currentFolderName; }
-        if (activeTabIcon) { activeTabIcon.src = currentPath.length > 0 ? "icons/folder_open_tab.png" : "icons/home_tab.png"; }
+        if (activeTabIcon) { activeTabIcon.src = currentPath.length > 0 ? "icons/directory_open_cool-0.png" : "icons/directory_closed_cool-0.png"; }
         statusBarMainText.textContent = `Path: /${displayPath || ''}`;
         const leftPaneHeader = document.getElementById('left-pane-static-header'); 
         if(leftPaneHeader) { leftPaneHeader.textContent = `Current Content: /${displayPath || ''}`; }
